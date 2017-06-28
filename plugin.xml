@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='utf-8'?>
+<plugin id="cordova-plugin-downloadmanager" version="0.0.1" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
+    <name>DownloadManager</name>
+    <DESCRIPTION>Awesome PLugin to dowload files directly in downloads app</DESCRIPTION>
+    <js-module name="DownloadManager" src="www/DownloadManager.js">
+        <clobbers target="cordova.plugins.DownloadManager" />
+    </js-module>
+</plugin>
