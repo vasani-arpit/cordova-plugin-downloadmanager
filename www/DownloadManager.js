@@ -1,5 +1,5 @@
 var exec = require('cordova/exec');
 
-exports.coolMethod = function(arg0, success, error) {
-    exec(success, error, "DownloadManager", "coolMethod", [arg0]);
+exports.download = function(arg0, success, error) {
+    exec(success, error, "DownloadManager", "download", [arg0]);
 };

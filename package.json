@@ -1,0 +1,22 @@
+{
+  "name": "cordova-plugin-downloadmanager",
+  "version": "0.0.1",
+  "description": "A plugin to start system's default download manager.",
+  "cordova": {
+    "id": "cordova-plugin-downloadmanager",
+    "platforms": []
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vasani-arpit/cordova-plugin-downloadmanager.git"
+  },
+  "keywords": [
+    "ecosystem:cordova"
+  ],
+  "author": "Arpit Vasani",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vasani-arpit/cordova-plugin-downloadmanager/issues"
+  },
+  "homepage": "https://github.com/vasani-arpit/cordova-plugin-downloadmanager#readme"
+}
