@@ -24,6 +24,10 @@ var success = function (data) {
 cordova.plugins.DownloadManager.download("Your URL to download", success, fail);
  ```
 
+## Result
+
+![screenshot](./screenshot/downloadplugin.gif)
+
 ## Contributing
 
 1. Fork it
