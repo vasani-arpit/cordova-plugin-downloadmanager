@@ -1,5 +1,5 @@
 # cordova-plugin-downloadmanager
-A Cordova plugin to download file in system's default download manager with request Headers.
+A Cordova plugin to download file in android default download manager with request Headers.
 
 ## Supported Platforms
 
