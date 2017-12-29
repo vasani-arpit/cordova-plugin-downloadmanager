@@ -21,5 +21,5 @@ var fail = function (message) {
 var success = function (data) {
         console.log("succes");
 }
-cordova.plugins.DownloadManager.download("Your URL to download","Your authorization token" success, fail);
+cordova.plugins.DownloadManager.download("Your URL to download","Your authorization token", success, fail);
  ```
