@@ -13,8 +13,8 @@ A Cordova plugin to download file in system's default download manager
 
  ## How to Use 
 
-```
- //after device is ready
+```js
+//after device is ready
 var fail = function (message) {    
     alert(message)
 }
