@@ -13,7 +13,7 @@ A Cordova plugin to download file in system's default download manager
 
  ## How to Use 
 
- ```
+```
  //after device is ready
 var fail = function (message) {    
     alert(message)
@@ -21,8 +21,18 @@ var fail = function (message) {
 var success = function (data) {
         console.log("succes");
 }
-cordova.plugins.DownloadManager.download("Your URL to download", success, fail);
+
+//with URL
+cordova.plugins.DownloadManager.download("https://github.com/apache/cordova-android/archive/8.0.0.zip", success, fail);
+//with object
+cordova.plugins.DownloadManager.download({
+        url:"https://github.com/apache/cordova-android/archive/8.0.0.zip",
+        filename:"test.zip",
+        description:"App is downloading a file"
+}, success, fail);
  ```
+
+
 
 ## Result
 
