@@ -54,7 +54,28 @@ public class DownloadManager extends CordovaPlugin {
     }
 
     private void startDownload(String url, String filename, String description, CallbackContext callbackContext) {
-        android.app.DownloadManager downloadManager = (android.app.DownloadManager) cordova.getActivity().getApplicationContext().getSystemService(Context.DOWNLOAD_SERVICE);
+        if(url.isEmpty() || url.length() == 0 || url.equals("") || url == null) {
+            callbackContext.error("Please enter url");
+        }
+
+        if(filename.isEmpty() || filename.length() == 0 || filename.equals("") || filename == null) {
+            String getFilename = url.substring(url.lastIndexOf("/") + 1, url.length());
+            filename = getFilename;
+        }else{
+            String actualExtension = url.substring(url.lastIndexOf(".") + 1);
+            String getExtension = filename.substring(filename.lastIndexOf(".") + 1);
+
+            if(!actualExtension.equals(getExtension)){
+                String fileNameWithoutExtn = filename.substring(0, filename.lastIndexOf("."));
+                filename = fileNameWithoutExtn + '.' + actualExtension;
+            }
+        }
+
+        if(description.isEmpty() || description.length() == 0 || description.equals("") || description == null) {
+            description = "App is downloading a file";
+        }
+		
+		android.app.DownloadManager downloadManager = (android.app.DownloadManager) cordova.getActivity().getApplicationContext().getSystemService(Context.DOWNLOAD_SERVICE);
         Uri Download_Uri = Uri.parse(url);
         android.app.DownloadManager.Request request = new android.app.DownloadManager.Request(Download_Uri);
         //Set the title of this download, to be displayed in notifications (if enabled).
