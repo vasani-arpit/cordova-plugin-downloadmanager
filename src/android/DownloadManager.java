@@ -27,7 +27,34 @@ public class DownloadManager extends CordovaPlugin {
             this.startDownload(url, fileName, callbackContext);
             return true;
         }
+        if (action.equals("addCompletedDownload")) {
+            String title = args.getString(0);
+            String description = args.getString(1);
+            String mimeType = args.getString(2);
+            String path = args.getString(3);
+            long length = args.getLong(4);
+            this.addCompletedDownload(title, description, mimeType, path, length, callbackContext);
+            return true;
+        }
         return false;
+    }
+    
+    private void addCompletedDownload(String title, String description, String mimeType, String path, long length, CallbackContext callbackContext) {
+        
+        if(title != null && title.length() > 0 && description != null && description.length() > 0 && mimeType != null && mimeType.length() > 0 && path != null && path.length() > 0 && length > 0) {
+            
+            android.app.DownloadManager downloadManager = (android.app.DownloadManager) cordova.getActivity().getApplicationContext().getSystemService(Context.DOWNLOAD_SERVICE);            
+                    
+            try {
+                downloadManager.addCompletedDownload(title, description, false, mimeType, path, length, true);
+            } catch (Exception e) {
+                callbackContext.error(e.getMessage());
+            }
+            
+            callbackContext.success(title);
+        } else {
+            callbackContext.error("Invalid one or more arguments.");
+        }
     }
 
     private void startDownload(String url, String fileName, CallbackContext callbackContext) {
