@@ -13,6 +13,7 @@ A Cordova plugin to download file in system's default download manager
 
  ## How to Use
 
+
  ```
  //after device is ready
 var fail = function (message) {    
@@ -21,7 +22,7 @@ var fail = function (message) {
 var success = function (data) {
         console.log("succes");
 }
-cordova.plugins.DownloadManager.download("Your URL to download", "Your file name", success, fail);
+cordova.plugins.DownloadManager.download("Your URL to download", "Your file name","Your Description" ,success, fail);  --- Your Description parameter is optional
  ```
 
 ## Result
