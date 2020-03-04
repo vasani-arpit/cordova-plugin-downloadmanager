@@ -22,7 +22,7 @@ var fail = function (message) {
 var success = function (data) {
         console.log("succes");
 }
-cordova.plugins.DownloadManager.download("Your URL to download", "Your file name","Your Description" ,success, fail);  --- Your Description parameter is optional
+cordova.plugins.DownloadManager.download("Your URL to download", "Your file name","Your Description" ,success, fail);
  ```
 
 ## Result
