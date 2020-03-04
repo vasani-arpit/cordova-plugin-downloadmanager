@@ -24,7 +24,8 @@ public class DownloadManager extends CordovaPlugin {
         if (action.equals("download")) {
             String url = args.getString(0);
             String fileName = args.getString(1);
-            this.startDownload(url, fileName, callbackContext);
+            String des = args.getString(2);
+            this.startDownload(url, fileName, des ,callbackContext);
             return true;
         }
         if (action.equals("addCompletedDownload")) {
@@ -57,12 +58,11 @@ public class DownloadManager extends CordovaPlugin {
         }
     }
 
-    private void startDownload(String url, String fileName, CallbackContext callbackContext) {
+    private void startDownload(String url, String fileName, String description ,CallbackContext callbackContext) {
         if (url != null && url.length() > 0) {
             try {
                 fileName = URLDecoder.decode(fileName,"UTF-8");
             } catch (UnsupportedEncodingException e) {
-
                 callbackContext.error("Error in converting filename");
             }
             android.app.DownloadManager downloadManager = (android.app.DownloadManager) cordova.getActivity().getApplicationContext().getSystemService(Context.DOWNLOAD_SERVICE);
@@ -75,7 +75,7 @@ public class DownloadManager extends CordovaPlugin {
             //Set the title of this download, to be displayed in notifications (if enabled).
             request.setTitle(fileName);
             //Set a description of this download, to be displayed in notifications (if enabled)
-            request.setDescription("DataSync File Download.");
+            request.setDescription(description);
             //Set the local destination for the downloaded file to a path within the application's external files directory
             request.setDestinationInExternalFilesDir(cordova.getActivity().getApplicationContext(), Environment.DIRECTORY_DOWNLOADS, fileName);
             //Set visiblity after download is complete
