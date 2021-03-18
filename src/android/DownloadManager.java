@@ -25,7 +25,10 @@ public class DownloadManager extends CordovaPlugin {
             String url = args.getString(0);
             String fileName = args.getString(1);
             String des = args.getString(2);
-            this.startDownload(url, fileName, des ,callbackContext);
+            JSONObject options = args.getJSONObject(3);
+            Boolean usePublic = false;
+            usePublic = options.getBoolean("setDestinationInExternalPublicDir");
+            this.startDownload(url, fileName, des, usePublic, callbackContext);
             return true;
         }
         if (action.equals("addCompletedDownload")) {
@@ -58,7 +61,7 @@ public class DownloadManager extends CordovaPlugin {
         }
     }
 
-    private void startDownload(String url, String fileName, String description ,CallbackContext callbackContext) {
+    private void startDownload(String url, String fileName, String description, Boolean usePublic, CallbackContext callbackContext) {
         if (url != null && url.length() > 0) {
             try {
                 fileName = URLDecoder.decode(fileName,"UTF-8");
@@ -77,7 +80,12 @@ public class DownloadManager extends CordovaPlugin {
             //Set a description of this download, to be displayed in notifications (if enabled)
             request.setDescription(description);
             //Set the local destination for the downloaded file to a path within the application's external files directory
-            request.setDestinationInExternalFilesDir(cordova.getActivity().getApplicationContext(), Environment.DIRECTORY_DOWNLOADS, fileName);
+            //If usePublic is true, use setDestinationInExternalPublicDir().
+            if (usePublic) {
+                request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, fileName);
+            } else {
+                request.setDestinationInExternalFilesDir(cordova.getActivity().getApplicationContext(), Environment.DIRECTORY_DOWNLOADS, fileName);
+            }
             //Set visiblity after download is complete
             request.setNotificationVisibility(android.app.DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
             long downloadReference = downloadManager.enqueue(request);
