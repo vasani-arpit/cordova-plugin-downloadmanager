@@ -25,6 +25,12 @@ var success = function (data) {
 cordova.plugins.DownloadManager.download("Your URL to download", "Your file name","Your Description" ,success, fail);
  ```
 
+```
+var options = {
+  setDestinationInExternalPublicDir: true  // set true if you want to use public dir instead of files dir
+}
+cordova.plugins.DownloadManager.download("Your URL to download", "Your file name","Your Description" ,success, fail, options)
+```
 ## Result
 
 ![screenshot](./screenshot/downloadplugin.gif)
