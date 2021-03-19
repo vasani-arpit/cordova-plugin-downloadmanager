@@ -14,7 +14,7 @@ A Cordova plugin to download file in system's default download manager
  ## How to Use
 
 
- ```
+ ```javascript
  //after device is ready
 var fail = function (message) {    
     alert(message)
@@ -25,7 +25,7 @@ var success = function (data) {
 cordova.plugins.DownloadManager.download("Your URL to download", "Your file name","Your Description" ,success, fail);
  ```
 
-```
+```javascript
 var options = {
   setDestinationInExternalPublicDir: true  // set true if you want to use public dir instead of files dir
 }
