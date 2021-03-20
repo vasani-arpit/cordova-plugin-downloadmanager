@@ -31,6 +31,31 @@ var options = {
 }
 cordova.plugins.DownloadManager.download("Your URL to download", "Your file name","Your Description" ,success, fail, options)
 ```
+
+To add an already downloaded file to the Downloads database.  
+```javascript
+// Full absolute path the the already downloaded file.  It should be in file:///storage/emulated/0/Download/ or subfolder.
+const filepath_sanitized = filepath.replace("file://", "");  // Note: Don't include any file:// prefix in the path.
+
+/**
+ * Method that calls the addCompletedDownload method on the DownloadManager object
+ * @param {string} title Must match the filename which was written.
+ * @param {string} description doesn't seem used?
+ * @param {string} mimeType i.e. "text/plain"
+ * @param {string} path Absolute file path. Note: Don't include any file:// prefix in the path.
+ * @param {number} length size of the downloaded file
+ * @param {function(string)} success callback
+ * @param {function(string)} error callback
+ */
+cordova.plugins.DownloadManager.addCompletedDownload(filename, "Your Description", 'text/*', filepath_sanitized, length,
+  (result) => {
+    console.info(result);
+  },
+  (err) => {
+    console.error(err);
+  })
+```
+
 ## Result
 
 ![screenshot](./screenshot/downloadplugin.gif)
